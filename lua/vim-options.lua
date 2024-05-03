@@ -6,8 +6,8 @@ vim.api.nvim_exec("language en_US", true)
 vim.g.mapleader = " "
 
 vim.o.number = true -- add line number
--- vim.o.relativenumber = true
+vim.o.relativenumber = false
 
 vim.o.signcolumn = "yes" -- add a block left of the screen
 
-vim.g.background = "transparent"
+--vim.g.background = "transparent"

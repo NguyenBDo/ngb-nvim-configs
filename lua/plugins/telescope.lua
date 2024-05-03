@@ -1,17 +1,23 @@
 -- PATH: nvim/lua/plugins/telescope.lua
 
 return {
-	{
-		"nvim-telescope/telescope-ui-select.nvim", -- https://github.com/nvim-telescope/telescope-ui-select.nvim
+	{ -- https://github.com/nvim-telescope/telescope-ui-select.nvim
+		"nvim-telescope/telescope-ui-select.nvim",
 	},
-	{
-		"nvim-telescope/telescope.nvim", -- https://github.com/nvim-telescope/telescope.nvim
+	{ -- https://github.com/nvim-telescope/telescope.nvim
+		"nvim-telescope/telescope.nvim",
 		tag = "0.1.5",
 		dependencies = {
 			"nvim-lua/plenary.nvim", -- https://github.com/nvim-lua/plenary.nvim
 		},
 		config = function()
 			require("telescope").setup({
+                defaults = {
+                    file_ignore_patterns = {
+                        ".git",
+                    },
+                },
+
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown({}),

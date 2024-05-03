@@ -1,12 +1,27 @@
 -- PATH: nvim/lua/plugins/lsp-config.lua
 
+local commonPath = "~/AppData/Local/nvim-data/mason/bin/"
+local lspPaths = {
+	lua_ls = "lua-language-server.cmd",
+}
+
+--[[
+-- Central LSP configurations
+--]]
+function configureLsp(lspconfig, capabilities, path)
+	lspconfig.setup({
+		cmd = { vim.fn.expand(commonPath .. path) },
+		capabilities = capabilities,
+	})
+end
+
 return {
 	{
 		"williamboman/mason.nvim", -- https://github.com/williamboman/mason.nvim
 		lazy = false,
 		config = function()
 			require("mason").setup({
-				PATH = "prepend",
+				PATH = "append",
 			})
 		end,
 	},
@@ -24,6 +39,7 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local lspconfig = require("lspconfig")
+			--[[
 			lspconfig.tsserver.setup({
 				capabilities = capabilities,
 			})
@@ -33,11 +49,12 @@ return {
 			lspconfig.html.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
 
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+ --]]
+
+            configureLsp(lspconfig.lua_ls, capabilities, lspPaths.lua_ls)
+
+			vim.keymap.set("n", "<leader>ho", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
 			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})

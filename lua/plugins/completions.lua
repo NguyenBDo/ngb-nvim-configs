@@ -1,19 +1,19 @@
 -- PATH: nvim/lua/plugins/completions.lua
 
 return {
-	{
-		"hrsh7th/cmp-nvim-lsp", -- https://github.com/hrsh7th/cmp-nvim-lsp
+	{ -- https://github.com/hrsh7th/cmp-nvim-lsp
+		"hrsh7th/cmp-nvim-lsp", 
 	},
-	{
-		"L3MON4D3/LuaSnip", -- https://github.com/L3MON4D3/LuaSnip
+	{ -- https://github.com/L3MON4D3/LuaSnip
+		"L3MON4D3/LuaSnip",
 		dependencies = {
 			"saadparwaiz1/cmp_luasnip", -- https://github.com/saadparwaiz1/cmp_luasnip
 			"rafamadriz/friendly-snippets", -- https://github.com/rafamadriz/friendly-snippets
 		},
 	},
-	{
-		"hrsh7th/nvim-cmp", -- https://github.com/hrsh7th/nvim-cmp
-		config = function()
+	{ -- https://github.com/hrsh7th/nvim-cmp
+		"hrsh7th/nvim-cmp", 		
+        config = function()
 			local cmp = require("cmp")
 			require("luasnip.loaders.from_vscode").lazy_load()
 
